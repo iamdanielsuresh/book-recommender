@@ -5,3 +5,4 @@ chroma_db3/
 .env.local
 .csv
 chroma_db/
+.gradio

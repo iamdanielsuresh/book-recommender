@@ -4,3 +4,4 @@ chroma_db3/
 .env
 .env.local
 .csv
+chroma_db/

@@ -11,6 +11,6 @@ chroma_db3/
 
 # Ignore all CSV files
 *.csv
-
+!books_with_emotions.csv
 # Ignore Gradio-related files
 .gradio/

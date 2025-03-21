@@ -20,7 +20,7 @@
 
 ## 🌟 Overview
 
-This project transforms raw book metadata into a semantic recommender system. Starting with 7,000+ books from Kaggle, I explored the data, built a vector search engine, generalized categories with zero-shot classification, added sentiment analysis, and wrapped it in a slick Gradio dashboard. It’s fast, free, and runs locally (or soon on DigitalOcean!).
+This project transforms raw book metadata into a semantic recommender system. Starting with 7,000+ books from Kaggle, I explored the data, built a vector search engine, generalized categories with zero-shot classification, added sentiment analysis, and wrapped it in a Gradio dashboard. It’s fast, free, and runs locally .
 
 ### Key Features
 - **Semantic Search**: Find books by description using SBERT embeddings.
@@ -167,6 +167,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Sentence-Transformers for the SBERT model.
 - Gradio for the web interface.
 - Hugging Face for transformer models.
+- Dr. Jeena Kleenankandy for her guidance and support.
 
 <p align="center"> Made with ❤️ by <a href="https://github.com/iamdanielsuresh">Daniel Suresh and Shreyas R</a> </p>
 

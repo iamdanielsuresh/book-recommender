@@ -24,7 +24,7 @@ books = pd.read_csv('books_with_emotions.csv')
 books['large_thumbnail'] = books["thumbnail"] + "&fife=w800"
 books['large_thumbnail'] = np.where(
     books["large_thumbnail"].isna(),
-    "cover_not_found.jpg",
+    "cover-not-found.jpg",
     books["large_thumbnail"]
 )
 

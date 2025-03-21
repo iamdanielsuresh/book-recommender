@@ -32,30 +32,24 @@ books['large_thumbnail'] = np.where(
 embeddings = SBERTEmbeddings()
 
 # Load or build vector store with persistence
-# persist_dir = "./chroma_db"
-# if not os.path.exists(persist_dir):
-#     print("Building vector store...")
-#     raw_documents = TextLoader("tagged_description.txt").load()
-#     text_splitter = CharacterTextSplitter(chunk_size=0, chunk_overlap=0, separator="\n")
-#     documents = text_splitter.split_documents(raw_documents)
-#     texts = [doc.page_content for doc in documents]
-#     db_books = Chroma.from_texts(
-#         texts=texts,
-#         embedding=embeddings,
-#         persist_directory=persist_dir
-#     )
-# else:
-#     print("Loading existing vector store...")
-#     db_books = Chroma(persist_directory=persist_dir, embedding_function=embeddings)
+persist_dir = "./chroma_db"
+if not os.path.exists(persist_dir):
+    print("Building vector store...")
+    raw_documents = TextLoader("tagged_description.txt").load()
+    text_splitter = CharacterTextSplitter(chunk_size=0, chunk_overlap=0, separator="\n")
+    documents = text_splitter.split_documents(raw_documents)
+    texts = [doc.page_content for doc in documents]
+    db_books = Chroma.from_texts(
+        texts=texts,
+        embedding=embeddings,
+        persist_directory=persist_dir
+    )
+else:
+    print("Loading existing vector store...")
+    db_books = Chroma(persist_directory=persist_dir, embedding_function=embeddings)
 
 
-# Load or build vector store (no persistence—Spaces rebuilds each time)
-print("Building vector store...")
-raw_documents = TextLoader("tagged_description.txt").load()
-text_splitter = CharacterTextSplitter(chunk_size=0, chunk_overlap=0, separator="\n")
-documents = text_splitter.split_documents(raw_documents)
-texts = [doc.page_content for doc in documents]
-db_books = Chroma.from_texts(texts=texts, embedding=embeddings)
+
 
 # Recommendation function
 def retrieve_semantic_recommendations(query, category=None, tone=None, initial_top_k=50, final_top_k=16):
@@ -114,4 +108,4 @@ with gr.Blocks(theme=gr.themes.Glass()) as dashboard:
     submit_button.click(fn=recommend_books, inputs=[user_query, category_dropdown, tone_dropdown], outputs=output)
 
 if __name__ == "__main__":
-    dashboard.launch(share=True)
+    dashboard.launch(server_name="0.0.0.0", server_port=7860)

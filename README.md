@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a href="http://your-droplet-ip:7860">Live Demo (Coming Soon)</a> • 
+  <a href="http://159.65.151.77:7860">Live Demo</a> • 
   <a href="https://github.com/iamdanielsuresh/book-recommender">Source Code</a> • 
   <a href="https://www.kaggle.com/datasets/dylanjcastillo/7k-books-with-metadata">Dataset</a>
 </p>
@@ -37,7 +37,7 @@ Here’s the journey from raw data to dope dashboard:
 ### 1. Data Exploration (`data-exploration.ipynb`)
 - **Purpose**: Clean and explore the dataset.
 - **Details**:
-  - Load and preprocess the dataset (`books_cleaned.csv`).
+  - Load and preprocess the dataset (Output : `books_cleaned.csv`).
   - Generate a tagged description file (`tagged_description.txt`).
   - Analyze and identify inconsistencies in book categories.
   
@@ -50,14 +50,14 @@ Here’s the journey from raw data to dope dashboard:
   
 
 ### 3. Text Classification (`text-classification.ipynb`)
-- **Purpose**: Simplify and generalize book categories (`books_with_categories.csv`)
+- **Purpose**: Simplify and generalize book categories (Output : `books_with_categories.csv`)
 - **Details**:
   - Apply zero-shot classification using Hugging Face’s `bart-large-mnli` to map raw categories to broader ones.
   - Save the updated dataset with simplified categories.
   
 
 ### 4. Sentiment Analysis (`sentiment-analysis.ipynb`)
-- **Purpose**: Add emotional tone analysis to book descriptions((`books_with_emotions.csv`).
+- **Purpose**: Add emotional tone analysis to book descriptions((Output : `books_with_emotions.csv`).
 - **Details**:
   - Use Hugging Face’s `DistilBERT` to analyze book descriptions for emotions like joy, sadness, and anger.
   - Append emotion scores to the dataset for personalized recommendations.
@@ -168,6 +168,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Gradio for the web interface.
 - Hugging Face for transformer models.
 
-<p align="center"> Made with ❤️ by <a href="https://github.com/iamdanielsuresh">Daniel Suresh</a> </p>
+<p align="center"> Made with ❤️ by <a href="https://github.com/iamdanielsuresh">Daniel Suresh and Shreyas R</a> </p>
 
 

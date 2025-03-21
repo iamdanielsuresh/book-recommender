@@ -3,6 +3,7 @@
 
 # Ignore ChromaDB directories
 chroma_db3/
+chroma_db/
 
 bookyrec/
 

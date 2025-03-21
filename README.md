@@ -35,44 +35,139 @@ This project transforms raw book metadata into a semantic recommender system. St
 Here’s the journey from raw data to dope dashboard:
 
 ### 1. Data Exploration (`data-exploration.ipynb`)
-- **Dataset**: [7k Books with Metadata](https://www.kaggle.com/datasets/dylanjcastillo/7k-books-with-metadata) (~5,197 usable entries after cleaning).
-- **Steps**:
-  - Loaded `books_cleaned.csv` (ISBN13, title, authors, categories, description).
-  - Created `tagged_description.txt` (ISBN13 + description per line).
-  - Explored `categories`—found messy, varied labels needing generalization.
+- **Purpose**: Clean and explore the dataset.
+- **Details**:
+  - Load and preprocess the dataset (`books_cleaned.csv`).
+  - Generate a tagged description file (`tagged_description.txt`).
+  - Analyze and identify inconsistencies in book categories.
+  
 
 ### 2. Vector Search (`vector-search.ipynb`)
-- **Goal**: Search books by description similarity.
-- **Tech**:
-  - **SBERT**: Swapped slow Ollama (`tinyllama`: 17m, `mistral`: 132m) for `all-MiniLM-L6-v2` (~1-5m build).
-  - **Chroma**: Persistent vector store (`./chroma_db`).
-- **Process**:
-  - Loaded `tagged_description.txt` into Chroma with SBERT embeddings.
-  - Tested queries like “A book about to teach children about nature”—way better than Ollama!
+- **Purpose**: Build a semantic search engine for book descriptions.
+- **Details**:
+  - Use SBERT (`all-MiniLM-L6-v2`) to encode book descriptions into embeddings.
+  - Store and query embeddings using Chroma for fast similarity searches.
+  
 
 ### 3. Text Classification (`text-classification.ipynb`)
-- **Goal**: Generalize messy `categories` (e.g., “Young Adult Sci-Fi” → “Fiction”).
-- **Tech**: Zero-shot classification with Hugging Face’s `bart-large-mnli` (faster than `mistral`).
-- **Steps**:
-  - Defined broad categories: Fiction, Nonfiction, Children’s, Science, Fantasy, Mystery.
-  - Mapped raw `categories` to `simple_categories` (~5-15m).
-  - Saved to `books_with_emotions.csv`.
+- **Purpose**: Simplify and generalize book categories (`books_with_categories.csv`)
+- **Details**:
+  - Apply zero-shot classification using Hugging Face’s `bart-large-mnli` to map raw categories to broader ones.
+  - Save the updated dataset with simplified categories.
+  
 
 ### 4. Sentiment Analysis (`sentiment-analysis.ipynb`)
-- **Goal**: Add emotional tones to recommendations.
-- **Tech**:Used a pre-trained model from Huggingface (DistilBERT) for emotions.
-- **Steps**:
-  - Analyzed descriptions for joy, surprise, anger, fear, sadness.
-  - Added scores to `books_with_emotions.csv` (e.g., `joy: 0.8`, `sadness: 0.2`).
+- **Purpose**: Add emotional tone analysis to book descriptions((`books_with_emotions.csv`).
+- **Details**:
+  - Use Hugging Face’s `DistilBERT` to analyze book descriptions for emotions like joy, sadness, and anger.
+  - Append emotion scores to the dataset for personalized recommendations.
+  
 
-### 5. Gradio Dashboard (`gradio-dashboard.py`)
-- **Goal**: Tie it all together in a user-friendly UI.
-- **Tech**: Gradio with SBERT + Chroma backend.
-- **Features**:
-  - Input: Description query, category dropdown, tone dropdown.
-  - Output: Gallery of 16 books with thumbnails, titles, authors, and truncated descriptions.
-  - Bonus: “Click here for source code” link to this repo!
+### 5. Gradio Dashboard (`app.py`)
+- **Purpose**: Create an interactive user interface for book recommendations.
+- **Details**:
+  - Integrate semantic search, category filters, and tone analysis.
+  - Display results with thumbnails, titles, and descriptions in a user-friendly format.
 
 ---
+
+## 📋 Requirements
+
+- Python 3.9+
+- pip (Python package manager)
+- Internet connection (for downloading pre-trained models)
+
+---
+
+## ⚙️ Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/iamdanielsuresh/book-recommender.git
+   cd book-recommender
+   ```
+
+2. Create a virtual environment and activate it:
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+---
+
+## 🚀 Usage
+
+1. Run the Gradio dashboard:
+   ```bash
+   python app.py
+   ```
+
+2. Open your browser and navigate to:
+   ```
+   http://127.0.0.1:7860
+   ```
+
+3. Enter a description, select a category and tone, and get personalized book recommendations!
+
+---
+
+## 📁 Project Structure
+
+- `data-exploration.ipynb`: Data cleaning and exploration.
+- `vector-search.ipynb`: Building the semantic search engine.
+- `text-classification.ipynb`: Generalizing book categories.
+- `sentiment-analysis.ipynb`: Adding emotional tone analysis.
+- `app.py`: Gradio dashboard for user interaction.
+
+---
+
+## 🎯 How to Use
+
+1. Enter a description of the type of book you're looking for.
+2. Select a category (Fiction, Non-Fiction, Children's, etc.).
+3. Choose an emotional tone (Happy, Surprising, Suspenseful, etc.).
+4. Click "Find recommendations."
+5. Browse through the gallery of recommended books.
+
+---
+
+## 🤝 Contributing
+
+1. Fork the repository.
+2. Create your feature branch:
+   ```bash
+   git checkout -b feature/AmazingFeature
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m 'Add some AmazingFeature'
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature/AmazingFeature
+   ```
+5. Open a Pull Request.
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- Kaggle Dataset by Dylan Castillo.
+- Sentence-Transformers for the SBERT model.
+- Gradio for the web interface.
+- Hugging Face for transformer models.
+
+<p align="center"> Made with ❤️ by <a href="https://github.com/iamdanielsuresh">Daniel Suresh</a> </p>
 
 

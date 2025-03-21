@@ -60,7 +60,7 @@ Here’s the journey from raw data to dope dashboard:
 
 ### 4. Sentiment Analysis (`sentiment-analysis.ipynb`)
 - **Goal**: Add emotional tones to recommendations.
-- **Tech**: Likely used a pre-trained model (e.g., DistilBERT) for emotions.
+- **Tech**:Used a pre-trained model from Huggingface (DistilBERT) for emotions.
 - **Steps**:
   - Analyzed descriptions for joy, surprise, anger, fear, sadness.
   - Added scores to `books_with_emotions.csv` (e.g., `joy: 0.8`, `sadness: 0.2`).
@@ -75,9 +75,4 @@ Here’s the journey from raw data to dope dashboard:
 
 ---
 
-## 🚀 Getting Started
-
-### Prerequisites
-- Python 3.9+
-- Git
 

@@ -2,8 +2,9 @@
 .venv/
 
 # Ignore ChromaDB directories
-chroma_db/
 chroma_db3/
+
+bookyrec/
 
 # Ignore environment files
 .env
